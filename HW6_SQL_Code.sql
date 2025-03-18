@@ -27,6 +27,15 @@ WHERE flight_count = (
        SELECT MAX(count)
        FROM (
         SELECT COUNT(*) AS count
-       FROM flights.main.flights 
+        FROM flights.main.flights AS sub_flights
+        WHERE sub_flights.origin = flight_counts.origin
+        GROUP BY sub_flights.dest
+    ) AS max_counts
+)
+ORDER BY airport;
+/*
+Pretty sure there has to be a simpler way of doing this. 
+This is very convoluted, but at least it actually works. 
+Please let me know if you can improve this at all I don't think it looks very nice.
+*/
 
--- This code is still in progress, but I wanted to save my work here.
