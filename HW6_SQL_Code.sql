@@ -1,5 +1,6 @@
 -- Question 1
-SELECT origin, AVG(temp) AS mean_temperature
+SELECT origin AS airport, 
+       AVG(temp) AS mean_temperature
 FROM flights.main.weather
 GROUP BY origin
 
