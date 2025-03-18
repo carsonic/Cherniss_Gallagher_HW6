@@ -19,10 +19,14 @@ SELECT origin AS airport,
 FROM (
     SELECT origin, 
            dest, 
-           COUNT(*) AS flights_count
+           COUNT(*) AS flight_count
     FROM flights.main.flights
     GROUP BY origin, dest
 ) AS flight_counts
-WHERE flight_count = 
+WHERE flight_count = (
+       SELECT MAX(count)
+       FROM (
+        SELECT COUNT(*) AS count
+       FROM flights.main.flights 
 
 -- This code is still in progress, but I wanted to save my work here.
